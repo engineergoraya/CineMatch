@@ -1,73 +1,67 @@
-# Welcome to your Lovable project
+🎬 Netflix-Style Streaming Discovery Platform
+An advanced, production-grade Movie and TV Series discovery platform engineered to mimic the premium experience of services like Netflix. This project showcases expertise in secure serverless architecture, complex API aggregation, real-time data handling, and high-performance frontend development.
 
-## Project info
+🔥 Project Highlights (Architectural & Technical Scope)
+This application is built as a Multi-Agent System that securely handles complex data requests and delivers a fluid user experience:
 
-**URL**: https://lovable.dev/projects/6ea4a97c-29fe-4886-bee7-5943fa318c9c
+Secure Serverless Proxy (λ): All external TMDB API calls are routed through a custom Vercel Serverless Function (/api/tmdb.js). This ensures the TMDB_API_KEY is secured as an environment variable, meeting industry standards for API key security.
 
-## How can I edit this code?
+Advanced API Aggregation: Implements Multi-Search (/search/multi) to simultaneously query Movies, TV Shows, and Actors/People. The system also aggregates data across /discover, /trending, and specific /videos and /credits endpoints for deep content detail.
 
-There are several ways of editing your application.
+High-Performance UI/UX: Features a Netflix-style dark UI, dynamic Horizontal Carousels (Trending, Top Rated, Pakistani Picks, etc.), and smooth Infinite Scroll for seamless content discovery.
 
-**Use Lovable**
+Real-Time Data Features: Includes a debounced, real-time suggestion search that provides instant auto-complete results as the user types, enhancing search efficiency.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6ea4a97c-29fe-4886-bee7-5943fa318c9c) and start prompting.
+Enhanced Media Playback: The detailed modal automatically fetches and autoplays the official YouTube trailer for selected titles.
 
-Changes made via Lovable will be committed automatically to this repo.
+🛠️ Tech Stack & Implementation
+Category	Technology	Implementation Detail
+Frontend	HTML5, CSS3, JavaScript	Custom dark theme UI with Poppins font and full responsiveness.
+Architecture	Vercel Serverless Functions	Securely proxies all API requests, handles environment variables, and ensures fast cold starts.
+Core Logic	Custom JavaScript	Implements Debouncing for search, Throttling for infinite scroll, and complex DOM manipulation for the modal and carousels.
+Data Source	TMDB API (The Movie Database)	Used for all content and metadata.
+Features	Carousels, Infinite Scroll, Modals	Custom-built, lightweight components—no heavy external UI libraries used.
 
-**Use your preferred IDE**
+Export to Sheets
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+🚀 Installation & Deployment
+This project is built for seamless deployment on Vercel.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Prerequisites
+A free TMDB API Key.
 
-Follow these steps:
+A free Vercel account linked to your GitHub repository.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Vercel Deployment Steps
+Clone the Repository:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Bash
 
-# Step 3: Install the necessary dependencies.
-npm i
+git clone [Your Repository URL]
+Deploy Project: Import the repository into your Vercel dashboard. Vercel will automatically recognize and build the /api/tmdb.js serverless function.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Set Environment Variable (CRITICAL SECURITY STEP):
 
-**Edit a file directly in GitHub**
+In the Vercel dashboard settings for your project, navigate to Settings → Environment Variables.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Add a new variable:
 
-**Use GitHub Codespaces**
+Name: TMDB_API_KEY
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Value: Paste your actual TMDB API secret key.
 
-## What technologies are used for this project?
+Re-deploy the project for the environment variable to take effect.
 
-This project is built with:
+💡 System Functionality
+The application flow highlights advanced frontend-to-backend communication:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+UI Interaction: User scrolls, triggers infinite scroll, or types into the debounced search bar.
 
-## How can I deploy this project?
+Client Request: JavaScript constructs a request URL (e.g., /api/tmdb?endpoint=...) but does not include the API key.
 
-Simply open [Lovable](https://lovable.dev/projects/6ea4a97c-29fe-4886-bee7-5943fa318c9c) and click on Share -> Publish.
+Serverless Proxy: The Vercel function receives the request, server-side appends the secure TMDB_API_KEY from its environment, fetches the data from TMDB, and returns the clean JSON to the client.
 
-## Can I connect a custom domain to my Lovable project?
+Data Rendering: The frontend processes the JSON, shuffles results, and renders them into responsive card grids or horizontal carousels with smooth fade-in animations.
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+👨‍💻 Author
+(Abdul Raheem Goraya) – Computer Engineering Student, GIKI.
